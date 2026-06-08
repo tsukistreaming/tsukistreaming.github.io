@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Meta Etiquetas SEO y Open Graph (Para WhatsApp/Discord) -->
+    <!-- Meta Etiquetas SEO y Open Graph -->
     <title>Tsuki | Servicios Premium</title>
-    <meta name="description" content="Disfruta de Netflix, ChatGPT Plus, Gemini Pro y más al mejor precio. Activación inmediata y garantía total.">
+    <meta name="description" content="Disfruta de Netflix, ChatGPT Plus, YouTube Premium, DAZN y más al mejor precio. Activación inmediata.">
     <meta property="og:title" content="Tsuki | Suscripciones Digitales Premium">
-    <meta property="og:description" content="Tus plataformas favoritas de Streaming e IA al mejor precio. ¡Entra y descubre nuestros packs!">
+    <meta property="og:description" content="Tus plataformas favoritas de Streaming e IA al mejor precio. ¡Descubre nuestros descuentos por volumen!">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#6366f1">
 
@@ -32,10 +32,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-        /* Fondo interactivo de Partículas GLOBAL */
+        /* Fondo interactivo GLOBAL */
         #particles-js { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; opacity: 0.5; }
 
-        /* Navegación y Live Status */
+        /* Navegación */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem; background: rgba(10, 11, 16, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
         .logo { font-size: 1.8rem; font-weight: 800; color: #fff; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
         .logo svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; }
@@ -47,21 +47,24 @@
         /* Cabecera Hero */
         header { text-align: center; padding: 6rem 2rem 4rem; position: relative; }
         .header-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
-        
         header h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         header p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; }
-        .features-hero { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; }
+        
+        /* Combo Badge */
+        .combo-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; font-weight: 600; color: var(--bg-dark); background: var(--success-color); padding: 8px 20px; border-radius: 50px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); }
+
+        .features-hero { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
         .feature-badge { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 8px 16px; border-radius: 50px; border: 1px solid var(--border-color); backdrop-filter: blur(5px); }
         .feature-badge svg { width: 16px; height: 16px; stroke: var(--accent-primary); }
 
         main { max-width: 1200px; margin: 0 auto; padding: 0 2rem 5rem; position: relative; z-index: 2; }
         .section-title { font-size: 1.5rem; font-weight: 600; margin: 2rem 0; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); color: #fff; }
 
-        /* Clases para el Scroll Reveal (Aparición suave) */
+        /* Scroll Reveal */
         .reveal-item { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .reveal-item.active { opacity: 1; transform: translateY(0); }
 
-        /* Pasos: Cómo Funciona */
+        /* Pasos */
         .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
         .step-card { text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border-color); }
         .step-icon { width: 60px; height: 60px; background: rgba(99, 102, 241, 0.1); color: var(--accent-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.5rem; font-weight: 800; }
@@ -76,19 +79,21 @@
         .category-section.hidden { display: none; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Etiquetas FOMO */
-        .fomo-tag { position: absolute; top: -12px; right: 20px; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 10; }
+        /* Etiquetas FOMO ajustadas */
+        .fomo-tag { position: absolute; top: 15px; right: 15px; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 10; }
         .fomo-danger { background-color: var(--danger-color); color: white; }
         .fomo-warning { background-color: var(--warning-color); color: #000; }
         .fomo-success { background-color: var(--success-color); color: white; }
 
-        /* Tarjetas (Packs y Normales) */
+        /* Tarjetas */
         .packs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
         .pack-card { background: linear-gradient(145deg, var(--bg-card) 0%, #1a1c29 100%); border-radius: 16px; padding: 2.5rem 2rem; text-align: center; position: relative; border: 1px solid var(--border-color); transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .pack-card.popular { border: 2px solid var(--accent-secondary); box-shadow: 0 0 30px rgba(139, 92, 246, 0.15); }
         .pack-card.active:hover, .card.active:hover { transform: translateY(-5px); }
+        
         .pack-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)); color: white; padding: 4px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
-        .pack-card h3 { color: #fff; font-size: 1.5rem; margin-bottom: 0.5rem; }
+        
+        .pack-card h3 { color: #fff; font-size: 1.5rem; margin-bottom: 0.5rem; margin-top: 1rem; }
         .pack-includes { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; min-height: 48px; }
         .pack-price { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
         .pack-price span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
@@ -114,10 +119,10 @@
         .warranty-btn { max-width: 280px; background: transparent; border: 2px solid var(--success-color); color: var(--success-color); font-size: 1rem; }
         .warranty-btn:hover { background: var(--success-color); color: #fff; box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); border-color: var(--success-color); }
 
-        /* Notificaciones Toast */
-        .toast-container { position: fixed; bottom: 110px; right: 30px; display: flex; flex-direction: column; gap: 10px; z-index: 2000; }
-        .toast { background: var(--bg-card); color: #fff; border-left: 4px solid var(--success-color); padding: 12px 20px; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 10px; font-size: 0.9rem; animation: slideInRight 0.3s ease forwards, fadeOut 0.3s ease 2.7s forwards; opacity: 0; transform: translateX(100%); }
-        @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
+        /* Notificaciones Toast Reubicadas (Abajo a la Izquierda) */
+        .toast-container { position: fixed; bottom: 30px; left: 30px; display: flex; flex-direction: column-reverse; gap: 10px; z-index: 2000; }
+        .toast { background: var(--bg-card); color: #fff; border-left: 4px solid var(--success-color); padding: 12px 20px; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 10px; font-size: 0.9rem; animation: slideInLeft 0.3s ease forwards, fadeOut 0.3s ease 2.7s forwards; opacity: 0; transform: translateX(-100%); }
+        @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
         @keyframes fadeOut { to { opacity: 0; } }
 
         /* Botones Flotantes */
@@ -126,8 +131,8 @@
         .float-btn:hover { transform: scale(1.1); }
         .btn-wa { background-color: var(--whatsapp-color); color: #FFF; }
         .btn-cart { background-color: var(--accent-primary); color: #FFF; }
-        .float-btn svg { width: 30px; height: 30px; fill: currentColor; }
-        .btn-cart svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;}
+        .float-btn svg { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+        .btn-wa svg { fill: currentColor; stroke: none; width: 32px; height: 32px; }
         .cart-badge { position: absolute; top: -5px; right: -5px; background-color: var(--danger-color); color: white; font-size: 0.8rem; font-weight: bold; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid var(--bg-dark); }
 
         /* Menú Cesta */
@@ -149,7 +154,10 @@
         .cart-footer { padding: 1.5rem; border-top: 1px solid var(--border-color); background: rgba(0,0,0,0.2); }
         
         .payment-icons { display: flex; justify-content: center; gap: 10px; margin-bottom: 1rem; color: var(--text-muted); align-items: center;}
-        .payment-icons svg { height: 20px; fill: currentColor; }
+        .payment-icons svg { height: 20px; fill: currentColor; stroke: none; }
+        
+        /* Fila de Descuento Auto */
+        .discount-row { display: none; justify-content: space-between; color: var(--success-color); font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
         
         .cart-total { display: flex; justify-content: space-between; color: #fff; font-size: 1.2rem; font-weight: 800; margin-bottom: 1.5rem; }
         .cart-empty-msg { text-align: center; color: var(--text-muted); margin-top: 2rem; }
@@ -175,7 +183,7 @@
 </head>
 <body>
 
-    <!-- Fondo de Partículas en toda la web -->
+    <!-- Fondo de Partículas -->
     <div id="particles-js"></div>
 
     <nav>
@@ -191,6 +199,7 @@
 
     <header>
         <div class="header-content">
+            <div class="combo-badge">🎁 5% de descuento al llevar 3 o más servicios</div>
             <h1>Suscripciones Digitales Premium</h1>
             <p>Disfruta de tus plataformas favoritas y herramientas de productividad al mejor precio del mercado.</p>
             <div class="features-hero">
@@ -204,8 +213,8 @@
         <h2 class="section-title reveal-item">¿Cómo funciona?</h2>
         <div class="steps-grid">
             <div class="step-card reveal-item"><div class="step-icon">1</div><h3>Elige tu servicio</h3><p>Explora nuestro catálogo y selecciona la plataforma que deseas contratar.</p></div>
-            <div class="step-card reveal-item" style="transition-delay: 0.1s;"><div class="step-icon">2</div><h3>Añade a la cesta</h3><p>Prepara tu pedido cómodamente y haz clic en completar por WhatsApp.</p></div>
-            <div class="step-card reveal-item" style="transition-delay: 0.2s;"><div class="step-icon">3</div><h3>Disfruta al instante</h3><p>Realiza el pago rápido y recibe tus credenciales de acceso de forma inmediata.</p></div>
+            <div class="step-card reveal-item" style="transition-delay: 0.1s;"><div class="step-icon">2</div><h3>Añade a la cesta</h3><p>Combina servicios. Si llevas 3 o más, aplicamos un descuento automáticamente.</p></div>
+            <div class="step-card reveal-item" style="transition-delay: 0.2s;"><div class="step-icon">3</div><h3>Disfruta al instante</h3><p>Paga rápido por WhatsApp y recibe tus credenciales de acceso de forma inmediata.</p></div>
         </div>
 
         <div class="filter-container reveal-item">
@@ -227,8 +236,8 @@
                     <button class="btn add-to-cart" data-name="Pack Todo Cine" data-price="4.00">Añadir a la cesta</button>
                 </div>
                 <div class="pack-card popular reveal-item" style="transition-delay: 0.1s;">
-                    <span class="fomo-tag fomo-warning">⭐ Top Ventas</span>
                     <div class="pack-badge">PRODUCTIVIDAD PRO</div>
+                    <span class="fomo-tag fomo-warning">⭐ Top Ventas</span>
                     <h3>Pack IA Total</h3>
                     <p class="pack-includes">ChatGPT Plus + Gemini Pro</p>
                     <div class="pack-price">15,00€<span>/mes</span></div>
@@ -286,13 +295,21 @@
                 </div>
                 <div class="card reveal-item" style="transition-delay: 0.1s;">
                     <div class="card-header">
+                        <img src="https://cdn.simpleicons.org/youtube/ff0000" alt="YouTube Premium" class="card-logo">
+                        <div class="service-name">YouTube Premium</div>
+                        <div class="price">1,50€<span> / mes</span></div>
+                    </div>
+                    <button class="btn add-to-cart" data-name="YouTube Premium" data-price="1.50">Añadir a la cesta</button>
+                </div>
+                <div class="card reveal-item" style="transition-delay: 0.2s;">
+                    <div class="card-header">
                         <img src="https://cdn.simpleicons.org/movistar/019DF4" alt="Movistar+" class="card-logo">
                         <div class="service-name">Movistar+</div>
                         <div class="price">2,00€<span> / mes</span></div>
                     </div>
                     <button class="btn add-to-cart" data-name="Movistar+" data-price="2.00">Añadir a la cesta</button>
                 </div>
-                <div class="card reveal-item" style="transition-delay: 0.2s;">
+                <div class="card reveal-item">
                     <div class="card-header">
                         <img src="https://cdn.simpleicons.org/hbo/ffffff" alt="HBO Max" class="card-logo">
                         <div class="service-name">HBO Max</div>
@@ -300,7 +317,8 @@
                     </div>
                     <button class="btn add-to-cart" data-name="HBO Max" data-price="1.50">Añadir a la cesta</button>
                 </div>
-                <div class="card reveal-item">
+                <div class="card reveal-item" style="transition-delay: 0.1s;">
+                    <span class="fomo-tag fomo-warning">⭐ Lo más vendido</span>
                     <div class="card-header">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+" class="card-logo" style="filter: brightness(0) invert(1);">
                         <div class="service-name">Disney+</div>
@@ -308,7 +326,15 @@
                     </div>
                     <button class="btn add-to-cart" data-name="Disney+" data-price="1.00">Añadir a la cesta</button>
                 </div>
-                <div class="card reveal-item" style="transition-delay: 0.1s;">
+                <div class="card reveal-item" style="transition-delay: 0.2s;">
+                    <div class="card-header">
+                        <img src="https://cdn.simpleicons.org/dazn/ffffff" alt="DAZN" class="card-logo">
+                        <div class="service-name">DAZN</div>
+                        <div class="price">3.00€<span> / mes</span></div>
+                    </div>
+                    <button class="btn add-to-cart" data-name="DAZN" data-price="3.00">Añadir a la cesta</button>
+                </div>
+                <div class="card reveal-item">
                     <div class="card-header">
                         <img src="https://cdn.simpleicons.org/crunchyroll/F47521" alt="Crunchyroll" class="card-logo">
                         <div class="service-name">Crunchyroll</div>
@@ -316,7 +342,7 @@
                     </div>
                     <button class="btn add-to-cart" data-name="Crunchyroll" data-price="1.00">Añadir a la cesta</button>
                 </div>
-                <div class="card reveal-item" style="transition-delay: 0.2s;">
+                <div class="card reveal-item" style="transition-delay: 0.1s;">
                     <div class="card-header">
                         <img src="https://cdn.simpleicons.org/wwe/ffffff" alt="WWE" class="card-logo">
                         <div class="service-name">WWE Network</div>
@@ -343,7 +369,12 @@
     <!-- Botones Flotantes -->
     <div class="floating-buttons">
         <button class="float-btn btn-cart" id="cartBtn" title="Ver Cesta">
-            <svg viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.2 9.3a1 1 0 001 .7h12.4a1 1 0 001-.8L17 13M9 20a1 1 0 11-2 0 1 1 0 012 0zm8 0a1 1 0 11-2 0 1 1 0 012 0z"/></svg>
+            <!-- Icono clásico de carrito actualizado -->
+            <svg viewBox="0 0 24 24">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
             <span class="cart-badge" id="cartCount">0</span>
         </button>
         <a href="https://wa.me/34711289640?text=Hola,%20tengo%20una%20duda%20sobre%20los%20servicios%20de%20Tsuki." class="float-btn btn-wa" target="_blank" title="Contactar por WhatsApp">
@@ -367,6 +398,13 @@
                 <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
                 <span style="font-size: 0.8rem; margin-left: 5px;">Bizum / PayPal / Crypto</span>
             </div>
+            
+            <!-- Fila de Descuento (Se oculta/muestra por JS) -->
+            <div class="discount-row" id="discountRow">
+                <span>Descuento Combo (5%):</span>
+                <span id="cartDiscount">-0,00€</span>
+            </div>
+            
             <div class="cart-total">
                 <span>Total a pagar:</span>
                 <span id="cartTotalPrice">0,00€</span>
@@ -384,7 +422,7 @@
             <h2><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Garantía Tsuki</h2>
             <p>Comprar servicios digitales no tiene por qué ser un dolor de cabeza. En Tsuki te aseguramos:</p>
             <ul>
-                <li><strong>Entrega Express:</strong> En horario de atención, recibirás tus credenciales en menos de 10 minutos.</li>
+                <li><strong>Entrega Express:</strong> En horario de atención, recibirás tus credenciales en menos de 1 hora.</li>
                 <li><strong>Cobertura Total:</strong> Si tu cuenta presenta algún fallo de acceso durante el mes contratado, te la reemplazamos sin coste.</li>
                 <li><strong>Soporte Real:</strong> Hablas con personas reales a través de WhatsApp, nada de bots ni tickets eternos.</li>
             </ul>
@@ -437,6 +475,9 @@
         // --- 3. FILTROS Y CESTA ---
         const cart = [];
         const phone = "34711289640"; 
+        
+        // Variable para guardar el descuento final y enviarlo por WhatsApp
+        let appliedDiscount = 0;
 
         const filterBtns = document.querySelectorAll('.filter-btn');
         const sections = document.querySelectorAll('.category-section');
@@ -467,6 +508,8 @@
         const cartItemsContainer = document.getElementById('cartItems');
         const cartCount = document.getElementById('cartCount');
         const cartTotalPrice = document.getElementById('cartTotalPrice');
+        const discountRow = document.getElementById('discountRow');
+        const cartDiscountEl = document.getElementById('cartDiscount');
         
         function toggleCart() {
             cartSidebar.classList.toggle('active');
@@ -507,13 +550,16 @@
 
         function updateCartUI() {
             cartItemsContainer.innerHTML = '';
-            let total = 0, count = 0;
+            let subtotal = 0;
+            let count = 0;
 
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<div class="cart-empty-msg">Tu cesta está vacía.</div>';
+                discountRow.style.display = 'none';
+                appliedDiscount = 0;
             } else {
                 cart.forEach((item, index) => {
-                    total += item.price * item.quantity;
+                    subtotal += item.price * item.quantity;
                     count += item.quantity;
                     cartItemsContainer.innerHTML += `
                         <div class="cart-item">
@@ -530,19 +576,40 @@
                     `;
                 });
             }
+
+            // Lógica del Descuento por Paquetes (5% si hay >= 3 ítems)
+            if (count >= 3) {
+                appliedDiscount = subtotal * 0.05;
+                discountRow.style.display = 'flex';
+                cartDiscountEl.innerText = '-' + appliedDiscount.toFixed(2).replace('.', ',') + '€';
+            } else {
+                appliedDiscount = 0;
+                discountRow.style.display = 'none';
+            }
+
+            let total = subtotal - appliedDiscount;
+
             cartCount.innerText = count;
             cartTotalPrice.innerText = total.toFixed(2).replace('.', ',') + '€';
         }
 
         document.getElementById('checkoutBtn').addEventListener('click', () => {
             if (cart.length === 0) return alert('Añade algún servicio a la cesta primero.');
-            let text = " Hola Tsuki, quiero realizar el siguiente pedido:\n\n";
-            let total = 0;
+            let text = "Hola Tsuki, quiero realizar el siguiente pedido:\n\n";
+            let subtotal = 0;
+            
             cart.forEach(item => {
                 text += `- ${item.quantity}x ${item.name} - ${(item.price * item.quantity).toFixed(2)}€\n`;
-                total += item.price * item.quantity;
+                subtotal += item.price * item.quantity;
             });
-            text += `\n *Total a pagar: ${total.toFixed(2)}€*\n\n¿Me facilitas los métodos de pago?`;
+
+            if (appliedDiscount > 0) {
+                text += `\nDescuento Combo (5%): -${appliedDiscount.toFixed(2)}€`;
+            }
+
+            let finalTotal = subtotal - appliedDiscount;
+            text += `\nTotal a pagar: ${finalTotal.toFixed(2)}€\n\n¿Me facilitas los métodos de pago?`;
+            
             window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
         });
     </script>
