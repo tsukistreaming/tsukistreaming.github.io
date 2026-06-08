@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Meta Etiquetas SEO y Open Graph (Para WhatsApp/Discord) -->
+    <title>Tsuki | Servicios Premium</title>
+    <meta name="description" content="Disfruta de Netflix, ChatGPT Plus, Gemini Pro y más al mejor precio. Activación inmediata y garantía total.">
+    <meta property="og:title" content="Tsuki | Suscripciones Digitales Premium">
+    <meta property="og:description" content="Tus plataformas favoritas de Streaming e IA al mejor precio. ¡Entra y descubre nuestros packs!">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#6366f1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Variables y Reset */
+        :root {
+            --bg-dark: #0a0b10;
+            --bg-card: #14151f;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --border-color: #1e293b;
+            --whatsapp-color: #25D366;
+            --danger-color: #ef4444;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+        /* Fondo interactivo de Partículas GLOBAL */
+        #particles-js { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; opacity: 0.5; }
+
+        /* Navegación y Live Status */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem; background: rgba(10, 11, 16, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.8rem; font-weight: 800; color: #fff; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
+        .logo svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; }
+        
+        .live-status { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 6px 14px; border-radius: 50px; border: 1px solid var(--border-color); }
+        .status-dot { width: 8px; height: 8px; background-color: var(--success-color); border-radius: 50%; box-shadow: 0 0 8px var(--success-color); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
+
+        /* Cabecera Hero */
+        header { text-align: center; padding: 6rem 2rem 4rem; position: relative; }
+        .header-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+        
+        header h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        header p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; }
+        .features-hero { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; }
+        .feature-badge { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 8px 16px; border-radius: 50px; border: 1px solid var(--border-color); backdrop-filter: blur(5px); }
+        .feature-badge svg { width: 16px; height: 16px; stroke: var(--accent-primary); }
+
+        main { max-width: 1200px; margin: 0 auto; padding: 0 2rem 5rem; position: relative; z-index: 2; }
+        .section-title { font-size: 1.5rem; font-weight: 600; margin: 2rem 0; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); color: #fff; }
+
+        /* Clases para el Scroll Reveal (Aparición suave) */
+        .reveal-item { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal-item.active { opacity: 1; transform: translateY(0); }
+
+        /* Pasos: Cómo Funciona */
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+        .step-card { text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border-color); }
+        .step-icon { width: 60px; height: 60px; background: rgba(99, 102, 241, 0.1); color: var(--accent-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.5rem; font-weight: 800; }
+        .step-card h3 { color: #fff; margin-bottom: 0.5rem; font-size: 1.2rem; }
+        .step-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Filtros Dinámicos */
+        .filter-container { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .filter-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: var(--text-muted); padding: 0.6rem 1.5rem; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-weight: 600; font-size: 0.95rem; }
+        .filter-btn:hover, .filter-btn.active { background: var(--accent-primary); color: #fff; border-color: var(--accent-primary); box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
+        .category-section { display: block; animation: fadeIn 0.5s ease; }
+        .category-section.hidden { display: none; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Etiquetas FOMO */
+        .fomo-tag { position: absolute; top: -12px; right: 20px; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 10; }
+        .fomo-danger { background-color: var(--danger-color); color: white; }
+        .fomo-warning { background-color: var(--warning-color); color: #000; }
+        .fomo-success { background-color: var(--success-color); color: white; }
+
+        /* Tarjetas (Packs y Normales) */
+        .packs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .pack-card { background: linear-gradient(145deg, var(--bg-card) 0%, #1a1c29 100%); border-radius: 16px; padding: 2.5rem 2rem; text-align: center; position: relative; border: 1px solid var(--border-color); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .pack-card.popular { border: 2px solid var(--accent-secondary); box-shadow: 0 0 30px rgba(139, 92, 246, 0.15); }
+        .pack-card.active:hover, .card.active:hover { transform: translateY(-5px); }
+        .pack-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)); color: white; padding: 4px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+        .pack-card h3 { color: #fff; font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .pack-includes { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; min-height: 48px; }
+        .pack-price { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
+        .pack-price span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+        .pack-savings { color: var(--success-color); font-weight: 600; font-size: 0.95rem; margin-bottom: 2rem; }
+        .pack-card .btn { background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)); color: white; border: none; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+        .card.active:hover { border-color: var(--accent-primary); box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1); }
+        .card-header { margin-bottom: 1.5rem; }
+        .card-logo { height: 40px; margin-bottom: 1.2rem; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); }
+        .service-name { font-size: 1.25rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem; }
+        .price { font-size: 2rem; font-weight: 800; color: var(--accent-primary); }
+        .price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+
+        .btn { display: block; width: 100%; padding: 0.875rem; text-align: center; background-color: rgba(99, 102, 241, 0.1); color: var(--accent-primary); text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.2s ease; border: 1px solid transparent; cursor: pointer; }
+        .btn:hover { background-color: var(--accent-primary); color: #fff; }
+
+        /* Banner Garantía */
+        .warranty-banner { background: linear-gradient(145deg, rgba(20,21,31,0.8) 0%, rgba(30,41,59,0.5) 100%); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem 3rem; margin: 4rem auto 2rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .warranty-content h3 { color: #fff; font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .warranty-content p { color: var(--text-muted); font-size: 1rem; }
+        .warranty-btn { max-width: 280px; background: transparent; border: 2px solid var(--success-color); color: var(--success-color); font-size: 1rem; }
+        .warranty-btn:hover { background: var(--success-color); color: #fff; box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); border-color: var(--success-color); }
+
+        /* Notificaciones Toast */
+        .toast-container { position: fixed; bottom: 110px; right: 30px; display: flex; flex-direction: column; gap: 10px; z-index: 2000; }
+        .toast { background: var(--bg-card); color: #fff; border-left: 4px solid var(--success-color); padding: 12px 20px; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 10px; font-size: 0.9rem; animation: slideInRight 0.3s ease forwards, fadeOut 0.3s ease 2.7s forwards; opacity: 0; transform: translateX(100%); }
+        @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeOut { to { opacity: 0; } }
+
+        /* Botones Flotantes */
+        .floating-buttons { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 999; }
+        .float-btn { width: 60px; height: 60px; border-radius: 50px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); cursor: pointer; transition: all 0.3s ease; border: none; position: relative; }
+        .float-btn:hover { transform: scale(1.1); }
+        .btn-wa { background-color: var(--whatsapp-color); color: #FFF; }
+        .btn-cart { background-color: var(--accent-primary); color: #FFF; }
+        .float-btn svg { width: 30px; height: 30px; fill: currentColor; }
+        .btn-cart svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;}
+        .cart-badge { position: absolute; top: -5px; right: -5px; background-color: var(--danger-color); color: white; font-size: 0.8rem; font-weight: bold; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid var(--bg-dark); }
+
+        /* Menú Cesta */
+        .cart-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); backdrop-filter: blur(3px); z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .cart-overlay.active { opacity: 1; pointer-events: auto; }
+        .cart-sidebar { position: fixed; top: 0; right: -450px; width: 100%; max-width: 400px; height: 100vh; background-color: var(--bg-card); z-index: 1001; box-shadow: -5px 0 30px rgba(0,0,0,0.5); display: flex; flex-direction: column; transition: right 0.3s ease; border-left: 1px solid var(--border-color); }
+        .cart-sidebar.active { right: 0; }
+        .cart-header { padding: 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+        .cart-header h2 { color: #fff; font-size: 1.5rem; }
+        .close-cart { background: none; border: none; color: var(--text-muted); font-size: 2rem; cursor: pointer; transition: color 0.2s; }
+        .close-cart:hover { color: #fff; }
+        .cart-items { flex-grow: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color); }
+        .item-info h4 { color: #fff; margin-bottom: 0.2rem; }
+        .item-info p { color: var(--accent-primary); font-weight: 600; font-size: 0.9rem; }
+        .item-controls { display: flex; align-items: center; gap: 10px; }
+        .qty-btn { background: var(--border-color); color: #fff; border: none; width: 25px; height: 25px; border-radius: 4px; cursor: pointer; }
+        .qty-btn:hover { background: var(--text-muted); }
+        .cart-footer { padding: 1.5rem; border-top: 1px solid var(--border-color); background: rgba(0,0,0,0.2); }
+        
+        .payment-icons { display: flex; justify-content: center; gap: 10px; margin-bottom: 1rem; color: var(--text-muted); align-items: center;}
+        .payment-icons svg { height: 20px; fill: currentColor; }
+        
+        .cart-total { display: flex; justify-content: space-between; color: #fff; font-size: 1.2rem; font-weight: 800; margin-bottom: 1.5rem; }
+        .cart-empty-msg { text-align: center; color: var(--text-muted); margin-top: 2rem; }
+
+        /* Modal Garantía */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal.active { display: flex; }
+        .modal-content { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem; max-width: 500px; width: 90%; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; background: none; border: none; }
+        .modal-close:hover { color: #fff; }
+        .modal-content h2 { color: #fff; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .modal-content h2 svg { width: 24px; height: 24px; stroke: var(--success-color); }
+        .modal-content p { color: var(--text-muted); margin-bottom: 1rem; font-size: 0.95rem; }
+        .modal-content ul { list-style: none; margin-bottom: 1.5rem; }
+        .modal-content ul li { color: var(--text-main); margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; }
+        .modal-content ul li::before { content: '✓'; color: var(--success-color); position: absolute; left: 0; font-weight: bold; }
+
+        footer { text-align: center; padding: 2rem; color: var(--text-muted); border-top: 1px solid var(--border-color); font-size: 0.9rem; background-color: var(--bg-card); position: relative; z-index: 2;}
+
+        @media (max-width: 768px) { .warranty-banner { flex-direction: column; text-align: center; padding: 2rem; } .warranty-btn { max-width: 100%; } }
+        @media (max-width: 600px) { header h1 { font-size: 2.2rem; } .grid { grid-template-columns: 1fr; } .pack-card.popular { transform: none; } nav { flex-direction: column; gap: 1rem; } }
+    </style>
+</head>
+<body>
+
+    <!-- Fondo de Partículas en toda la web -->
+    <div id="particles-js"></div>
+
+    <nav>
+        <div class="logo">
+            <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            Tsuki
+        </div>
+        <div class="live-status">
+            <div class="status-dot"></div>
+            Sistemas Online - Entrega Activa
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <h1>Suscripciones Digitales Premium</h1>
+            <p>Disfruta de tus plataformas favoritas y herramientas de productividad al mejor precio del mercado.</p>
+            <div class="features-hero">
+                <div class="feature-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Activación Inmediata</div>
+                <div class="feature-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Garantía Total</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="section-title reveal-item">¿Cómo funciona?</h2>
+        <div class="steps-grid">
+            <div class="step-card reveal-item"><div class="step-icon">1</div><h3>Elige tu servicio</h3><p>Explora nuestro catálogo y selecciona la plataforma que deseas contratar.</p></div>
+            <div class="step-card reveal-item" style="transition-delay: 0.1s;"><div class="step-icon">2</div><h3>Añade a la cesta</h3><p>Prepara tu pedido cómodamente y haz clic en completar por WhatsApp.</p></div>
+            <div class="step-card reveal-item" style="transition-delay: 0.2s;"><div class="step-icon">3</div><h3>Disfruta al instante</h3><p>Realiza el pago rápido y recibe tus credenciales de acceso de forma inmediata.</p></div>
+        </div>
+
+        <div class="filter-container reveal-item">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="packs">Packs Especiales</button>
+            <button class="filter-btn" data-filter="ia">Inteligencia Artificial</button>
+            <button class="filter-btn" data-filter="streaming">Streaming</button>
+        </div>
+
+        <!-- Categoría: Packs -->
+        <div class="category-section" data-category="packs">
+            <h2 class="section-title reveal-item">Packs Especiales</h2>
+            <div class="packs-grid">
+                <div class="pack-card reveal-item">
+                    <h3>Pack Todo Cine</h3>
+                    <p class="pack-includes">Netflix + HBO Max + Disney+</p>
+                    <div class="pack-price">4,00€<span>/mes</span></div>
+                    <p class="pack-savings">🔥 Ahorras 0,50€ al mes</p>
+                    <button class="btn add-to-cart" data-name="Pack Todo Cine" data-price="4.00">Añadir a la cesta</button>
+                </div>
+                <div class="pack-card popular reveal-item" style="transition-delay: 0.1s;">
+                    <span class="fomo-tag fomo-warning">⭐ Top Ventas</span>
+                    <div class="pack-badge">PRODUCTIVIDAD PRO</div>
+                    <h3>Pack IA Total</h3>
+                    <p class="pack-includes">ChatGPT Plus + Gemini Pro</p>
+                    <div class="pack-price">15,00€<span>/mes</span></div>
+                    <p class="pack-savings">⚡ Ahorras 2,00€ al mes</p>
+                    <button class="btn add-to-cart" data-name="Pack IA Total" data-price="15.00">Añadir a la cesta</button>
+                </div>
+                <div class="pack-card reveal-item" style="transition-delay: 0.2s;">
+                    <h3>Pack Action</h3>
+                    <p class="pack-includes">Crunchyroll + WWE Network</p>
+                    <div class="pack-price">2,00€<span>/mes</span></div>
+                    <p class="pack-savings">🔥 Ahorras 0,20€ al mes</p>
+                    <button class="btn add-to-cart" data-name="Pack Action" data-price="2.00">Añadir a la cesta</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categoría: IA -->
+        <div class="category-section" data-category="ia">
+            <h2 class="section-title reveal-item">Servicios Individuales: IA</h2>
+            <div class="grid">
+                <div class="card reveal-item">
+                    <span class="fomo-tag fomo-success">⚡ Entrega 5 mins</span>
+                    <div class="card-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff" class="card-logo">
+                            <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.073zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.8956zm16.0993 3.8558L12.5987 8.3829v-2.332a.0804.0804 0 0 1 .0332-.0615l3.973-2.2865a4.4992 4.4992 0 0 1 6.1408 1.6464 4.4708 4.4708 0 0 1 .5346 3.0137l-.1416-.0852-4.783-2.7582a.7712.7712 0 0 0-.7806 0l-5.8428 3.3685v2.3324a.0804.0804 0 0 1-.0332.0615l3.973 2.2865z"/>
+                        </svg>
+                        <div class="service-name">ChatGPT Plus</div>
+                        <div class="price">7,00€<span> / mes</span></div>
+                    </div>
+                    <button class="btn add-to-cart" data-name="ChatGPT Plus" data-price="7.00">Añadir a la cesta</button>
+                </div>
+                <div class="card reveal-item" style="transition-delay: 0.1s;">
+                    <div class="card-header">
+                        <img src="https://cdn.simpleicons.org/googlegemini/8E75B2" alt="Gemini" class="card-logo">
+                        <div class="service-name">Gemini Pro</div>
+                        <div class="price">10,00€<span> / mes</span></div>
+                    </div>
+                    <button class="btn add-to-cart" data-name="Gemini Pro" data-price="10.00">Añadir a la cesta</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categoría: Streaming -->
+        <div class="category-section" data-category="streaming">
+            <h2 class="section-title reveal-item">Servicios Individuales: Streaming</h2>
+            <div class="grid">
+                <div class="card reveal-item">
+                    <span class="fomo-tag fomo-danger">🔥 Stock Bajo</span>
+                    <div class="card-header">
+                        <img src="https://cdn.simpleicons.org/netflix/E50914" alt="Netflix" class="card-logo">
+                        <div class="service-name">Netflix</div>
+                        <div class="price">2,00€<span> / mes</span></div>
+                    </div>
+                    <button class="btn add-to-cart" data-name="Netflix" data-price="2.00">Añadir a la cesta</button>
+                </div>
+                <div class="card reveal-item" style="transition-delay: 0.1s;">
+                    <div class="card-header">
+                        <img src="https://cdn.simpleicons.org/movistar/019DF4" alt="Movistar+" class="card-logo">
+                        <div class="service-name">Movistar+</div>
+                        <div class="price">2,00€<span> / mes</span></div>
+                    </div>
+                    <button class="btn add-to-cart" data-name="Movistar+" data-price="2.00">Añadir a la cesta</button>
+                </div>
+                <div class="card reveal-item" style="transition-delay: 0.2s;">
+                    <div class="card-header">
+                        <img src="https://cdn.simpleicons.org/hbo/ffffff" alt="HBO Max" class="card-logo">
+                        <div class="service-name">HBO Max</div>
+                        <div class="price">1,50€<span> / mes</span></div>
+                    </div>
+                    <button class="btn add-to-cart" data-name="HBO Max" data-price="1.50">Añadir a la cesta</button>
+                </div>
+                <div class="card reveal-item">
+                    <div class="card-header">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+" class="card-logo" style="filter: brightness(0) invert(1);">
+                        <div class="service-name">Disney+</div>
+                        <div class="price">1,00€<span> / mes</span></div>
+                    </div>
+                    <button class="btn add-to-cart" data-name="Disney+" data-price="1.00">Añadir a la cesta</button>
+                </div>
+                <div class="card reveal-item" style="transition-delay: 0.1s;">
+                    <div class="card-header">
+                        <img src="https://cdn.simpleicons.org/crunchyroll/F47521" alt="Crunchyroll" class="card-logo">
+                        <div class="service-name">Crunchyroll</div>
+                        <div class="price">1,00€<span> / mes</span></div>
+                    </div>
+                    <button class="btn add-to-cart" data-name="Crunchyroll" data-price="1.00">Añadir a la cesta</button>
+                </div>
+                <div class="card reveal-item" style="transition-delay: 0.2s;">
+                    <div class="card-header">
+                        <img src="https://cdn.simpleicons.org/wwe/ffffff" alt="WWE" class="card-logo">
+                        <div class="service-name">WWE Network</div>
+                        <div class="price">1,20€<span> / mes</span></div>
+                    </div>
+                    <button class="btn add-to-cart" data-name="WWE Network" data-price="1.20">Añadir a la cesta</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banner Garantía -->
+        <div class="warranty-banner reveal-item">
+            <div class="warranty-content">
+                <h3>¿Dudas sobre tu compra?</h3>
+                <p>Nuestros servicios incluyen soporte técnico rápido y garantía total de reemplazo en caso de caídas.</p>
+            </div>
+            <button class="btn warranty-btn" id="openWarranty">Ver Garantía Tsuki</button>
+        </div>
+    </main>
+
+    <!-- Contenedor Toast Notificaciones -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Botones Flotantes -->
+    <div class="floating-buttons">
+        <button class="float-btn btn-cart" id="cartBtn" title="Ver Cesta">
+            <svg viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.2 9.3a1 1 0 001 .7h12.4a1 1 0 001-.8L17 13M9 20a1 1 0 11-2 0 1 1 0 012 0zm8 0a1 1 0 11-2 0 1 1 0 012 0z"/></svg>
+            <span class="cart-badge" id="cartCount">0</span>
+        </button>
+        <a href="https://wa.me/34711289640?text=Hola,%20tengo%20una%20duda%20sobre%20los%20servicios%20de%20Tsuki." class="float-btn btn-wa" target="_blank" title="Contactar por WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        </a>
+    </div>
+
+    <!-- Cesta Lateral -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>🛒 Tu Pedido</h2>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty-msg">Tu cesta está vacía.</div>
+        </div>
+        <div class="cart-footer">
+            <div class="payment-icons">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                <span style="font-size: 0.8rem; margin-left: 5px;">Bizum / PayPal / Crypto</span>
+            </div>
+            <div class="cart-total">
+                <span>Total a pagar:</span>
+                <span id="cartTotalPrice">0,00€</span>
+            </div>
+            <button class="btn" style="background: var(--whatsapp-color); color: #fff;" id="checkoutBtn">
+                Pagar por WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de Garantía -->
+    <div class="modal" id="warrantyModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeWarranty">&times;</button>
+            <h2><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Garantía Tsuki</h2>
+            <p>Comprar servicios digitales no tiene por qué ser un dolor de cabeza. En Tsuki te aseguramos:</p>
+            <ul>
+                <li><strong>Entrega Express:</strong> En horario de atención, recibirás tus credenciales en menos de 10 minutos.</li>
+                <li><strong>Cobertura Total:</strong> Si tu cuenta presenta algún fallo de acceso durante el mes contratado, te la reemplazamos sin coste.</li>
+                <li><strong>Soporte Real:</strong> Hablas con personas reales a través de WhatsApp, nada de bots ni tickets eternos.</li>
+            </ul>
+            <button class="btn" id="acceptWarranty">Entendido</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Tsuki. Todos los derechos reservados. Tus servicios digitales de confianza.</p>
+    </footer>
+
+    <!-- Librería externa para las partículas -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <!-- Lógica JS Integrada -->
+    <script>
+        // --- 1. CONFIGURACIÓN DE PARTÍCULAS GLOBALES ---
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#6366f1" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.4, "random": false },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#8b5cf6", "opacity": 0.3, "width": 1 },
+                "move": { "enable": true, "speed": 1.5, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": false }, "resize": true },
+                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.8 } } }
+            },
+            "retina_detect": true
+        });
+
+        // --- 2. ANIMACIONES SCROLL REVEAL ---
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-item').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // --- 3. FILTROS Y CESTA ---
+        const cart = [];
+        const phone = "34711289640"; 
+
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const sections = document.querySelectorAll('.category-section');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filterValue = btn.getAttribute('data-filter');
+                sections.forEach(sec => {
+                    if (filterValue === 'all' || sec.getAttribute('data-category') === filterValue) {
+                        sec.classList.remove('hidden');
+                    } else {
+                        sec.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        const warrantyModal = document.getElementById('warrantyModal');
+        document.getElementById('openWarranty').addEventListener('click', () => warrantyModal.classList.add('active'));
+        document.getElementById('closeWarranty').addEventListener('click', () => warrantyModal.classList.remove('active'));
+        document.getElementById('acceptWarranty').addEventListener('click', () => warrantyModal.classList.remove('active'));
+        warrantyModal.addEventListener('click', (e) => { if(e.target === warrantyModal) warrantyModal.classList.remove('active'); });
+
+        const cartBtn = document.getElementById('cartBtn');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartItemsContainer = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        const cartTotalPrice = document.getElementById('cartTotalPrice');
+        
+        function toggleCart() {
+            cartSidebar.classList.toggle('active');
+            cartOverlay.classList.toggle('active');
+        }
+        
+        cartBtn.addEventListener('click', toggleCart);
+        document.getElementById('closeCart').addEventListener('click', toggleCart);
+        cartOverlay.addEventListener('click', toggleCart);
+
+        function showToast(productName) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> ${productName} añadido`;
+            document.getElementById('toastContainer').appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const name = e.target.getAttribute('data-name');
+                const price = parseFloat(e.target.getAttribute('data-price'));
+                const existingItem = cart.find(item => item.name === name);
+                
+                if (existingItem) existingItem.quantity++;
+                else cart.push({ name, price, quantity: 1 });
+                
+                updateCartUI();
+                showToast(name);
+            });
+        });
+
+        window.changeQuantity = function(index, amount) { 
+            cart[index].quantity += amount;
+            if (cart[index].quantity <= 0) cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0, count = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<div class="cart-empty-msg">Tu cesta está vacía.</div>';
+            } else {
+                cart.forEach((item, index) => {
+                    total += item.price * item.quantity;
+                    count += item.quantity;
+                    cartItemsContainer.innerHTML += `
+                        <div class="cart-item">
+                            <div class="item-info">
+                                <h4>${item.name}</h4>
+                                <p>${(item.price * item.quantity).toFixed(2).replace('.', ',')}€</p>
+                            </div>
+                            <div class="item-controls">
+                                <button class="qty-btn" onclick="changeQuantity(${index}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="qty-btn" onclick="changeQuantity(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            cartCount.innerText = count;
+            cartTotalPrice.innerText = total.toFixed(2).replace('.', ',') + '€';
+        }
+
+        document.getElementById('checkoutBtn').addEventListener('click', () => {
+            if (cart.length === 0) return alert('Añade algún servicio a la cesta primero.');
+            let text = " Hola Tsuki, quiero realizar el siguiente pedido:\n\n";
+            let total = 0;
+            cart.forEach(item => {
+                text += `- ${item.quantity}x ${item.name} - ${(item.price * item.quantity).toFixed(2)}€\n`;
+                total += item.price * item.quantity;
+            });
+            text += `\n *Total a pagar: ${total.toFixed(2)}€*\n\n¿Me facilitas los métodos de pago?`;
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+        });
+    </script>
+</body>
+</html>
